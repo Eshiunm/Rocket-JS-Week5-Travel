@@ -30,8 +30,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketName-message" data-message="套票名稱">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -42,8 +40,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketImgUrl-message" data-message="圖片網址">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -59,8 +55,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketRegion-message" data-message="景點地區">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -71,8 +65,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketPrice-message" data-message="套票金額">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -83,8 +75,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketNum-message" data-message="套票組數">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -95,8 +85,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketRate-message" data-message="套票星級">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>必填!</span>
                     </p>
                 </div>
             </div>
@@ -107,8 +95,6 @@
                 </div>
                 <div class="alert-message">
                     <p id="ticketDescription-message" data-message="套票描述">
-                        <!-- <i class="fas fa-exclamation-circle"></i>
-                            <span>必填!</span> -->
                     </p>
                 </div>
             </div>
@@ -117,17 +103,22 @@
     </section>
     <section class="main-content">
         <!-- 搜尋區 -->
-        <div class="search-area">
-            <select name="" class="regionSearch">
-                <option value="地區搜尋" disabled selected hidden>地區搜尋</option>
-                <option value="全部地區">全部地區</option>
-                <option value="台北">台北</option>
-                <option value="台中">台中</option>
-                <option value="高雄">高雄</option>
-            </select>
-            <p id="searchResult-text">本次搜尋共 3 筆資料</p>
+        <div class="searchSection">
+            <div class="search-area">
+                <select name="" class="regionSearch">
+                    <option value="地區搜尋" disabled selected hidden>地區搜尋</option>
+                    <option value="全部地區">全部地區</option>
+                    <option value="台北">台北</option>
+                    <option value="台中">台中</option>
+                    <option value="高雄">高雄</option>
+                </select>
+                <p id="searchResult-text">本次搜尋共 3 筆資料</p>
+            </div>
+            <div class="graph">
+                <div id="chart" style="margin-bottom:30px"></div>
+            </div>
         </div>
-        <div id="chart" style="margin-bottom:30px"></div>
+
 
         <!-- 套票卡片區 -->
         <ul class="ticketCard-area">

@@ -103,9 +103,11 @@ selectElement.addEventListener("change", function () {
   const selectedOption = selectElement.value;
   let str = ``;
   let searchNum = 0;
+  let graphData = [];
   switch (selectedOption) {
     case "全部地區":
       data.forEach(function (item) {
+        graphData.push(item);
         str += `
         <li class="ticketCard">
             <div class="ticketCard-img">
@@ -142,6 +144,7 @@ selectElement.addEventListener("change", function () {
     default:
       data.forEach(function (item) {
         if (selectedOption == item.area) {
+          graphData.push(item);
           str += `
           <li class="ticketCard">
             <div class="ticketCard-img">
@@ -180,10 +183,12 @@ selectElement.addEventListener("change", function () {
   ticketCards.innerHTML = str;
   const searchResult = document.querySelector("#searchResult-text");
   searchResult.textContent = `本次搜尋共 ${searchNum} 筆資料`;
+  RenderC3(graphData);
 });
 
 /*渲染圖表*/
 function RenderC3(data) {
+  console.log(data);
   let obj = {};
   data.forEach(function (item) {
     if (obj[item.area] == undefined) {
@@ -200,18 +205,30 @@ function RenderC3(data) {
     arr.push(obj[item]);
     newData.push(arr);
   });
-
+  console.log(newData);
   const chart = c3.generate({
     bindto: "#chart",
     data: {
       columns: newData,
       type: "donut",
     },
+    donut: {
+      title: "套票地區占比",
+      width: 15,
+      label: {
+        show: false,
+      },
+    },
+    size: {
+      height: 200,
+      width: 200,
+    },
   });
 }
 /*渲染卡片裡面的資料*/
 function RenderData(data) {
   let str = ``;
+  let searchNum = 0;
   data.forEach(function (item) {
     str += `
     <li class="ticketCard">
@@ -243,8 +260,11 @@ function RenderData(data) {
         </div>
       </li>
     `;
+    searchNum++;
   });
   ticketCards.innerHTML = str;
+  const searchResult = document.querySelector("#searchResult-text");
+  searchResult.textContent = `本次搜尋共 ${searchNum} 筆資料`;
 }
 
 /*初始化*/
@@ -257,7 +277,6 @@ function init() {
       data = res.data;
       RenderData(res.data);
       RenderC3(res.data);
-      console.log(data);
     });
 }
 init();
