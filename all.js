@@ -188,8 +188,9 @@ selectElement.addEventListener("change", function () {
 
 /*渲染圖表*/
 function RenderC3(data) {
-  console.log(data);
+  //計算地區數量
   let obj = {};
+  console.log(obj);
   data.forEach(function (item) {
     if (obj[item.area] == undefined) {
       obj[item.area] = 1;
@@ -197,20 +198,25 @@ function RenderC3(data) {
       obj[item.area]++;
     }
   });
-  let areaArr = Object.keys(obj);
-  let newData = [];
+  let areaArr = Object.keys(obj); //將地區名稱從物件中取出來，並組成一個陣列
+  let newData = []; // 存放最終正確格式的資料餵給 c3
   areaArr.forEach(function (item) {
     let arr = [];
     arr.push(item);
     arr.push(obj[item]);
     newData.push(arr);
   });
-  console.log(newData);
+  // c3 圖表渲染
   const chart = c3.generate({
     bindto: "#chart",
     data: {
       columns: newData,
       type: "donut",
+      colors: {
+        高雄: "#1f77b4",
+        台中: "#2ca02c",
+        台北: "#ff7f0e",
+      },
     },
     donut: {
       title: "套票地區占比",
@@ -266,7 +272,6 @@ function RenderData(data) {
   const searchResult = document.querySelector("#searchResult-text");
   searchResult.textContent = `本次搜尋共 ${searchNum} 筆資料`;
 }
-
 /*初始化*/
 function init() {
   axios
@@ -275,8 +280,8 @@ function init() {
     )
     .then(function (res) {
       data = res.data;
-      RenderData(res.data);
-      RenderC3(res.data);
+      RenderData(data);
+      RenderC3(data);
     });
 }
 init();
